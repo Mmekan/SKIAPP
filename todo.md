@@ -19,8 +19,8 @@ Check items off as they land. Each phase should end in something you can run and
 - [x] Dark mode toggle (`components/theme-toggle.tsx`, saved in `localStorage`)
 - [x] Back button on every sub-page (`components/back-button.tsx`)
 - [x] `suppressHydrationWarning` on `<html>`/`<body>` (Grammarly extension attributes)
-- [ ] Reduced-motion fallbacks verified
-- [ ] Mobile check (375px) + desktop
+- [x] Reduced-motion fallbacks verified
+- [x] Mobile check (375px) + desktop
 
 ## Phase 2 — Course + onboarding
 - [ ] `lib/store.ts` — localStorage-backed context: level, primary course, extra courses, onboarded flag
