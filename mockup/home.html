@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SKI — Home mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --card:#f7f8f8; --ring:#1da1f2; --input:#f7f9fa; --muted:#E5E5E6; --accent:#E3ECF6;
+  --border:#e1eaef; --radius:1.3rem; --popover:#ffffff; --primary:#1e9df1;
+  --background:#ffffff; --foreground:#0f1419; --destructive:#f4212e;
+  --muted-foreground:#0f1419; --accent-foreground:#1e9df1;
+  --primary-foreground:#ffffff; --secondary:#0f1419; --secondary-foreground:#ffffff;
+  --font-sans:"Open Sans",sans-serif;
+}
+.dark{
+  --card:#17181c; --input:#22303c; --muted:#181818; --accent:#061622; --border:#242628;
+  --popover:#000000; --primary:#1c9cf0; --background:#000000; --foreground:#e7e9ea;
+  --muted-foreground:#72767a; --accent-foreground:#1c9cf0; --secondary:#f0f3f4;
+  --secondary-foreground:#0f1419;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans); background:var(--background); color:var(--foreground);
+  -webkit-font-smoothing:antialiased; line-height:1.5;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted-foreground);opacity:.55;font-weight:600;
+}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05;font-weight:700}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}
+h2{font-size:clamp(1.6rem,3.6vw,2.6rem)}
+p{color:var(--muted-foreground)}
+.lead{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.65;max-width:56ch}
+
+/* ---------- top bar (no hamburger) ---------- */
+.topbar{
+  position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  border-bottom:1px solid var(--border);
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.16em;font-size:14px}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 18%,transparent)}
+.topbar .meta{font-size:12px;color:var(--muted-foreground);opacity:.6}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(56px,10vw,120px) 0 clamp(40px,6vw,72px)}
+.hero h1{max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--primary)}
+.hero .lead{margin-top:22px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;
+  font-family:inherit;font-size:14px;font-weight:600;padding:13px 22px;
+  border-radius:999px;transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--primary);color:var(--primary-foreground);box-shadow:0 8px 24px -10px color-mix(in srgb,var(--primary) 70%,transparent)}
+.btn-primary:hover{background:color-mix(in srgb,var(--primary) 88%,black)}
+.btn-ghost{background:transparent;color:var(--foreground);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--card)}
+
+/* ---------- pick today's task ---------- */
+.pick{
+  margin-top:clamp(48px,8vw,88px);padding:clamp(28px,5vw,44px);
+  border:1px solid var(--border);border-radius:var(--radius);
+  background:linear-gradient(180deg,var(--card),color-mix(in srgb,var(--card) 40%,var(--background)));
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
+}
+.pick .mini{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-foreground);opacity:.55;font-weight:600}
+.pick h3{font-size:clamp(1.2rem,2.4vw,1.6rem);max-width:22ch}
+.pick .btn-primary{padding:15px 30px;font-size:15px}
+.pick .hint{font-size:12px;opacity:.5}
+
+/* ---------- sections ---------- */
+section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--border)}
+.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(28px,4vw,44px)}
+.grid{display:grid;gap:16px}
+@media(min-width:720px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:10px;
+}
+.card .num{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--primary)}
+.card h3{font-size:1.05rem;letter-spacing:-.01em}
+.card p{font-size:14px;line-height:1.6}
+.stat{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.04em;color:var(--primary)}
+.quote{
+  border-left:3px solid var(--primary);padding-left:20px;font-size:clamp(1.05rem,2vw,1.35rem);
+  line-height:1.5;color:var(--foreground);font-weight:500;max-width:44ch;
+}
+footer{padding:40px 0 64px;border-top:1px solid var(--border);font-size:12px;color:var(--muted-foreground);opacity:.6}
+
+/* ---------- fullscreen menu ---------- */
+.menu{
+  position:fixed;inset:0;z-index:60;background:#0f1419;color:#fff;
+  clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);
+  transition:clip-path .9s cubic-bezier(.77,0,.18,1);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(24px,5vw,56px);overflow:hidden;
+}
+.menu.open{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.menu[aria-hidden="true"]{pointer-events:none}
+.menu-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2}
+.menu-top .brand{color:#fff}
+.menu-close{
+  background:transparent;border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;
+  width:44px;height:44px;font-size:20px;cursor:pointer;line-height:1;transition:background .2s;
+}
+.menu-close:hover{background:rgba(255,255,255,.1)}
+.menu-links{display:flex;flex-direction:column;gap:2px;position:relative;z-index:2}
+.menu-links a{
+  color:#fff;text-decoration:none;font-size:clamp(2.2rem,7vw,4.4rem);font-weight:700;
+  letter-spacing:-.04em;line-height:1.12;width:max-content;
+  transition:color .25s ease,transform .25s ease;
+}
+.menu-links a:hover{color:var(--primary);transform:translateX(10px)}
+.menu-links a span{font-size:11px;letter-spacing:.2em;opacity:.4;vertical-align:super;margin-left:10px;font-weight:600}
+.menu-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;font-size:12px;opacity:.5;position:relative;z-index:2}
+/* falling phrases */
+.phrases{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.phrases span{
+  position:absolute;top:-12%;white-space:nowrap;font-size:clamp(11px,1.4vw,14px);
+  letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  color:rgba(255,255,255,.16);animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(var(--r,0deg));opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(115vh) rotate(var(--r,0deg));opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .menu{transition:none}
+  .phrases span{animation:none;opacity:.14;top:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>SKI</div>
+    <div class="meta">Built for Nigerian university students</div>
+  </div>
+</div>
+
+<main>
+  <!-- HERO -->
+  <div class="wrap hero">
+    <p class="eyebrow">Study, inside the outline</p>
+    <h1>Every answer you need is already in your <em>past questions</em>.</h1>
+    <p class="lead">SKI turns your official course outline and past questions into short video lessons. Pause anywhere, ask about the exact part you're watching, and get an answer that stays inside what you'll actually be tested on.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="openMenu()">Start studying</button>
+      <a class="btn btn-ghost" href="#thesis">Read our thesis</a>
+    </div>
+
+    <!-- PICK TODAY'S TASK -->
+    <div class="pick">
+      <p class="mini">Pick today's task</p>
+      <h3>What are we doing today?</h3>
+      <button class="btn btn-primary" onclick="openMenu()">Open menu</button>
+      <p class="hint">Home · Course · SQuiz · Study · Me</p>
+    </div>
+  </div>
+
+  <!-- THESIS -->
+  <section id="thesis">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Our thesis</p>
+        <h2>Students don't fail because they're lazy. They fail because the material is too wide.</h2>
+      </div>
+      <p class="quote">If a lesson can't be traced back to the course outline or a past question, it doesn't belong in SKI.</p>
+      <p class="lead" style="margin-top:24px">Lecturers move fast and assume prior knowledge. YouTube gives you the whole internet and no direction. AI gives you confident answers to questions you were never asked. SKI does one thing: it teaches exactly what your exam will ask, and nothing else.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">About</p>
+        <h2>Built from what students actually told us.</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <span class="num">THE PAIN</span>
+          <h3>Too much material, no priority</h3>
+          <p>Students told us the biggest problems are lecturers jumping ahead, too few examples, and not knowing what to prioritise before an exam.</p>
+        </div>
+        <div class="card">
+          <span class="num">THE WORKAROUND</span>
+          <h3>Ask AI, re-read notes, search YouTube</h3>
+          <p>That's what happens when you're stuck. Each one fails differently: AI is inaccurate, notes are static, YouTube can't answer a question about the exact part you're watching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS & VISION -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Metrics &amp; vision</p>
+        <h2>What we're measuring, and where this goes.</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><span class="stat">100%</span><h3>Outline-bound</h3><p>Every lesson segment maps to a line in the official course outline.</p></div>
+        <div class="card"><span class="stat">3×</span><h3>Layered recall</h3><p>Segment quiz, topic quiz, then the same material again later — spaced.</p></div>
+        <div class="card"><span class="stat">0</span><h3>Off-syllabus answers</h3><p>Ask anything while watching. If it's outside the outline, SKI says so and redirects.</p></div>
+      </div>
+      <p class="lead" style="margin-top:28px">The vision: every Nigerian university course, taught in the order the exam asks for it, with a tutor that never wanders off the syllabus.</p>
+    </div>
+  </section>
+
+  <!-- WHAT WE OFFER -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">What we offer</p>
+        <h2>Three things, done properly.</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="num">01</span>
+          <h3>Outline-bound video lessons</h3>
+          <p>Short segments built from your course outline and past questions. No tangents, no filler.</p>
+        </div>
+        <div class="card">
+          <span class="num">02</span>
+          <h3>Ask while you watch</h3>
+          <p>Pause at any point and ask about that exact part. Answers stay inside the outline, with exam-acceptable shortcuts where they help.</p>
+        </div>
+        <div class="card">
+          <span class="num">03</span>
+          <h3>Quizzes that come back</h3>
+          <p>After each segment, after each topic, and again later — so what you're forgetting gets caught before the exam does.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STARTED -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Started</p>
+        <h2>November 2026.</h2>
+      </div>
+      <p class="lead">SKI began as a response to a simple survey question: what actually stops you from passing? The answers shaped every decision above.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">SKI — study inside the outline.</div>
+</footer>
+
+<!-- FULLSCREEN MENU -->
+<nav class="menu" id="menu" aria-hidden="true" role="navigation">
+  <div class="phrases" id="phrases"></div>
+
+  <div class="menu-top">
+    <div class="brand"><span class="dot"></span>SKI</div>
+    <button class="menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  </div>
+
+  <div class="menu-links">
+    <a href="#" onclick="closeMenu()">Home<span>01</span></a>
+    <a href="#" onclick="closeMenu()">Course<span>02</span></a>
+    <a href="#" onclick="closeMenu()">SQuiz<span>03</span></a>
+    <a href="#" onclick="closeMenu()">Study<span>04</span></a>
+    <a href="#" onclick="closeMenu()">Me<span>05</span></a>
+  </div>
+
+  <div class="menu-foot">
+    <span>Study inside the outline.</span>
+    <span>Nigeria · 2026</span>
+  </div>
+</nav>
+
+<script>
+const PHRASES = [
+  "Past questions first",
+  "Ask while you watch",
+  "Stay inside the outline",
+  "Segment quiz, then topic quiz",
+  "Come back to what you forgot",
+  "No tangents",
+  "Exam-acceptable shortcuts",
+  "Three layers of recall",
+  "Your level, your course",
+  "Two topics at a time",
+  "Built from the syllabus",
+  "Nothing you won't be tested on"
+];
+
+const box = document.getElementById('phrases');
+PHRASES.forEach((text, i) => {
+  const s = document.createElement('span');
+  s.textContent = text;
+  s.style.left = (Math.random() * 78 + 2) + '%';
+  s.style.animationDuration = (14 + Math.random() * 12) + 's';
+  s.style.animationDelay = (-Math.random() * 20) + 's';
+  s.style.setProperty('--r', (Math.random() * 8 - 4) + 'deg');
+  box.appendChild(s);
+});
+
+const menu = document.getElementById('menu');
+let lastFocus = null;
+
+function openMenu(){
+  lastFocus = document.activeElement;
+  menu.classList.add('open');
+  menu.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  menu.querySelector('.menu-close').focus();
+}
+function closeMenu(){
+  menu.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+});
+</script>
+</body>
+</html>
